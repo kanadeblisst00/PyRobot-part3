@@ -6,6 +6,7 @@
 
 typedef int(*cdecl_add_pointer)(int, int);
 typedef int(__stdcall *stdcall_add_pointer)(int, int);
+typedef int(*cdecl_string_pointer)(const char*, const wchar_t*);
 
 struct CString
 {
@@ -35,6 +36,20 @@ int add_callback(stdcall_add_pointer add, int a, int b) {
 	return add(a, b);
 }
 
+int callback(const char* a, const wchar_t* b) {
+	std::wcout << a;
+	std::wcout << b;
+	return wcslen(b);
+}
+
+int string_callback(cdecl_string_pointer callback, char* a, wchar_t* b) {
+	std::string arg1 = "char* string";
+	arg1.append(a);
+	std::wstring arg2 = L"wchar_t* string";
+	arg2.append(b);
+	return callback(arg1.c_str(), arg2.c_str());
+}
+
 
 int console_print(CString* cs) {
 	std::wcout << L"print CString: ";
@@ -42,6 +57,16 @@ int console_print(CString* cs) {
 	std::wcout << L"\n";
 	return cs->len;
 }
+
+class ThisClass {
+public:
+	__declspec(dllexport) int add3(int a, int b, int c) {
+		std::wcout << L"ThisClass add3 \n";
+		return a + b + c;
+	}
+};
+
+
 
 
 int main()
@@ -55,6 +80,10 @@ int main()
 	console_print(cs2);
 	delete cs2;
 	add_callback(stdcall_add, 1, 5);
+	string_callback(callback, (char*)"aaaaaaaa", (wchar_t*)L"bbbbbbbbbbbbbbbbb");
+	
+	ThisClass tc;
+	tc.add3(1, 2, 4);
 	while (true) {
 		Sleep(2000);
 	}

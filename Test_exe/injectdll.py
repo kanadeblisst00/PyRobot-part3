@@ -57,10 +57,10 @@ def uninject_dll(pid, dllname):
     
 
 if __name__ == "__main__":
-    pids = enumProcess("CtypesTest.exe")
+    pids = enumProcess("WeChat.exe")
     print("pids: ", pids)
-    dllpath = os.path.abspath(r"python-3.10.11-embed-win32\pyexe.dll")
-    # dllpath = r"T:\Code\compile_python\libpython\Debug\libpython.dll"
+    # dllpath = os.path.abspath(r"python-3.10.11-embed-win32\pyexe.dll")
+    dllpath = r"D:\InstallSoftware\python38-32\pyexe.dll"
     addr = inject_dll(pids[0], dllpath)
     print("addr: ", addr)
     #uninject_dll(pids[0], "python310.dll")

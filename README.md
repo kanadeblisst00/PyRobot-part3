@@ -14,11 +14,6 @@
 9. 读取微信内存中的好友联系人列表的信息结构体数据
 10. 做一个僵尸粉检测工具
 
-## 公众号
-
-如果你也想学Python，可以关注下
-
-![公众号](https://open.weixin.qq.com/qr/code?username=Pygrower)
 
 ## 联系方式
 
@@ -26,4 +21,3 @@
 
 想提建议或者占坑可以先加下好友：kanadeblisst
 
-![kanadeblisst](https://github.com/kanadeblisst00/backup_img/blob/master/kanadeblisst.jpg)
